@@ -87,7 +87,8 @@ $(document).ready(function(){
 	l('ok');
 	$("#edit").hide();
 	$('textarea').attr('readonly',false);
-	$("#fileUpload").click()
+	$("#fileUpload").click();
+	start();
 
 
     $("#editor").scroll(function() {
@@ -186,7 +187,7 @@ $( ".classes" ).on("click",".class",function addEntity(){
 	prepareAnnotations(entities)
 	l(selected_text)
 	l($(this).text());
-	$("#editor").attr('contenteditable',true);
+	$("#editor").attr('contenteditable',false);
 	if (selection.rangeCount && selection.getRangeAt) {
 	    range = selection.getRangeAt(0);
 	}
@@ -282,7 +283,8 @@ $("#upload").click(function(){
 		    text_file_all_text = e.target.result.split('\n');
 		    $("#total_page_num").text(text_file_all_text.length);
 		    $("#page_num").text(page_num+1);
-		    $('#editor').text(text_file_all_text[page_num]);
+			$('#editor').text(text_file_all_text[page_num]);
+			$('#image').attr('src', "/assets/img/" + text_file_all_text[page_num].split(",")[1] + ".jpg")
 	    	$("#gsc-i-id1.gsc-input").val(text_file_all_text[page_num]);
 	    	$(".gsc-search-button").click();
 		};
@@ -310,8 +312,10 @@ function skipFn(){
 	$("#page_num").text(page_num+1);
 	$('#editor').text(text_file_all_text[page_num]);
 	$('#bk-editor').text(text_file_all_text[page_num]);
+	$('#image').attr('src', "/assets/img/" + text_file_all_text[page_num].split(",")[1] + ".jpg")
 	$("#gsc-i-id1.gsc-input").val(text_file_all_text[page_num]);
 	$(".gsc-search-button").click();
+	saveFn();
 	entity_count = 0;
 	entities = [];
 }
@@ -330,15 +334,17 @@ function nextFn(){
 	entities = [];
 	full_text = "";
 	$("#editor").text("");
-	$("#editor").attr('contenteditable',true);
+	$("#editor").attr('contenteditable',false);
 	$("#save").show();
 	$("#edit").hide();
 	$("#entity").empty();
 	if(page_num < text_file_all_text.length){
 		$('#editor').text(text_file_all_text[page_num]);
+		$('#image').attr('src', "/assets/img/" + text_file_all_text[page_num].split(",")[1] + ".jpg")
 		$("#bk-editor").text(text_file_all_text[page_num])
 		$("#gsc-i-id1.gsc-input").val(text_file_all_text[page_num]);
 		$(".gsc-search-button").click();
+		saveFn();
 	}
 	else{
 		alert("Completed Annotation");
@@ -367,7 +373,7 @@ function completeFn(){
 			entities = [];
 			full_text = "";
 			$("#editor").text("");
-			$("#editor").attr('contenteditable',true);
+			$("#editor").attr('contenteditable',false);
 			$("#save").show();
 			$("#edit").hide();
 			$("#entity").empty();
@@ -408,3 +414,11 @@ document.addEventListener('keydown', function(event) {
         }
     }
 });
+
+function start() {
+	const classes = ["vendor", "date", "address", "totalLabel", "totalAmount"];
+	for (classname of classes) {
+		class_names.push(classname);
+		$(".classes").append('<div class="row pdn"><div class="col-9"><button class="class" style="background-color:'+getRandomColor()+'99"><span>'+classname+'</span></button></div><div class="col-3"><button class="btn pull-right delete_btn"><i class="fa fa-trash"></i></button></div></div>')
+	}
+}

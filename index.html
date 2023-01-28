@@ -30,6 +30,13 @@
 		.content,.entity{
 			padding-left: 2%;
 		}
+		.image {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			width: 100%;
+		}
 		.classes{
 			border: 1px solid;
 			height: 600px;
@@ -49,9 +56,9 @@
 			height: 45px;
     		display: table;
     		padding: 10px 35px;
-    		background-color: lightskyblue;
-    		border: 1px solid;
+    		border: 1px solid lightgray;
     		cursor: pointer;
+			border-radius: 5px;
 		}
 		.class span{
 			vertical-align: middle;
@@ -208,17 +215,22 @@
 	<div class="col-12">
 		<div class="row">
 			<div class="header">
-				<h2>spaCy NER Annotator</h2>
+				<h2>Big Boy NER Annotator</h2>
 			</div>
 		</div>
 	</div>
 	<div class="col-12">
 		<div class="row">
-			<div class="col-8" >
+			<div class="col-4">
+				<div class="row" style="object-fit: contain">
+					<img src="https://w7.pngwing.com/pngs/282/737/png-transparent-smiley-emoticon-sunglasses-smiley-miscellaneous-face-smiley.png" class="rounded image" id="image" />
+				</div>
+			</div>
+			<div class="col-4" >
 				<div class="row content" >
 					<div class="col-3" style="padding: 0px;"><h4>Content</h4></div>
 					<div class="col-6 note">
-						<span>Please save it, Once pasted or typed</span>
+						<span>If you get bored remember it's for the puppies.</span>
 					</div>
 					<div class="col-3">
 						<button type="button" class="btn btn-secondary btn-sm" id="page_num"></button>
@@ -231,8 +243,8 @@
 				</div>
 				<div class="row content">
 					<div class="editor-div">
-						<div id="bk-editor" class="back-editor" contenteditable="true" onpaste="myFunction()"></div>
-						<div id="editor" class="front-editor" contenteditable="true" onpaste="myFunction()"></div>
+						<div id="bk-editor" class="back-editor" contenteditable="false" onpaste="myFunction()"></div>
+						<div id="editor" class="front-editor" contenteditable="false" onpaste="myFunction()"></div>
 					</div>
 					
 				</div>
@@ -242,9 +254,9 @@
 					<div class="clstitle">
 						<h4>Class Names</h4>
 					</div>
-					<div class="col-12 classes">
+					<div class="col-12 classes m-2">
 						<div class="addclass">
-							<div class="ctrtext">
+							<div class="ctrtext p-2">
 								<input class="form-control" type="text" placeholder="Add Class">
 							</div>
 							<div class="ctrbtn">
@@ -256,9 +268,9 @@
 						<div class="pdn"><button class="class"><span>Experience</span></button></div> -->
 					</div>
 					<div class="next-content">
-						<button type="button" id="skip" class="btns btn btn-secondary" onclick="skipFn();">Skip</button>
-						<button type="button" id="next" class="btns btn btn-primary" onclick="nextFn();">Next Content</button>
-						<button type="button" id="complete" class="btns btn btn-success" onclick="completeFn();">Complete</button>
+						<button type="button" id="skip" class="btns btn btn-secondary m-2" onclick="skipFn();">Skip</button>
+						<button type="button" id="next" class="btns btn btn-primary m-2" onclick="nextFn();">Next Content</button>
+						<button type="button" id="complete" class="btns btn btn-success m-2" onclick="completeFn();">Complete</button>
 					</div>
 					
 				</div>
